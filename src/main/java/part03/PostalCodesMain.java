@@ -1,5 +1,7 @@
 package part03;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -36,13 +38,38 @@ public class PostalCodesMain {
          * The keys in the map are postal codes and the values are postal district
          * names.
          */
+        
         Map<String, String> postalCodes = PostalCodesReader.readPostalCodes();
-
+        
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input postal code or district (e.g., 00100 or Helsinki): ");
         String answer = scanner.nextLine(); // answer may be a postal code or a postal district name
 
-        // TODO: Implement your logic here
+        if (postalCodes.containsKey(answer)) {
+            System.out.print(postalCodes.get(answer));
+        } else {
+            List<String> postalcode = new ArrayList<>();
+                for (Map.Entry<String, String> string : postalCodes.entrySet()) {
+                    if (string.getValue().equalsIgnoreCase(answer)) {
+                        postalcode.add(string.getKey());
+                    }
+                }
+                for (int i = 0; i < postalcode.size(); i++) {
+                    for (int j = i + 1; j < postalcode.size(); j++) {
+                        if (postalcode.get(i).compareTo(postalcode.get(j)) > 0) {
+                            String valiaikainenPostinumero = postalcode.get(i);
+                            postalcode.set(i, postalcode.get(j));
+                            postalcode.set(j, valiaikainenPostinumero);
+                        }
+                        
+                    }
+
+                    
+                }
+                
+                System.out.print(postalcode);
+        }
+
 
         scanner.close();
     }
