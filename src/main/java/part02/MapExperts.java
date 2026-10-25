@@ -1,5 +1,6 @@
 package part02;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,19 @@ public class MapExperts {
          * or the toCharArray() method. charAt() returns a single character and
          * toCharArray() returns an array of characters.
          */
-        return null;
+        Map<Character, Integer> map2 = new HashMap<>();
+            for (int i = 0; i < word.length(); i++) {
+                char letter = word.charAt(i);
+                int maara = map2.getOrDefault(letter, 0) + 1;
+                map2.put(letter, maara);
+
+                
+            }
+            
+            
+
+
+        return map2;
     }
 
     /**
@@ -52,7 +65,13 @@ public class MapExperts {
          * can choose any of the keys to be the value of the reversed map. So either
          * { 1 -> "apples" } or { 1 -> "oranges" } will be accepted.
          */
-        return null;
+
+        Map<Integer, String> map2 = new HashMap<>();
+            for ( Map.Entry<String, Integer> pair : map.entrySet()) {
+                map2.put(pair.getValue(), pair.getKey());
+                
+            }
+        return map2;
     }
 
     /**
@@ -77,6 +96,11 @@ public class MapExperts {
          * String code = course.code();
          * String name = course.name(); // you won't need this in the exercise
          */
-        return null;
+
+        Map<String, Course> map2 = new HashMap<>();
+            for (Course course : list) {
+                map2.put(course.code(), course);
+            }
+        return map2;
     }
 }
